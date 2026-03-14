@@ -1,165 +1,374 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="sv" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restauranger - Amsterdam Resa</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Restauranger - Amsterdam Resa 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        canal: { 50: '#eef6ff', 100: '#d9eaff', 200: '#bcd9ff', 300: '#8ec1ff', 400: '#599fff', 500: '#3378ff', 600: '#1a56f5', 700: '#1542e1', 800: '#1736b6', 900: '#19328f' },
+                        tulip: { 50: '#fff5f5', 100: '#ffe0e0', 200: '#ffc7c7', 300: '#ffa0a0', 400: '#ff6b6b', 500: '#ff3d3d', 600: '#e81e1e', 700: '#c41414', 800: '#a11414', 900: '#8a1818' },
+                        amber: { 50: '#fffbeb', 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Outfit', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .font-display { font-family: 'Outfit', system-ui, sans-serif; }
+        .glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.15); }
+        .glass-dark { background: rgba(0,0,0,0.2); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        .gradient-text { background: linear-gradient(135deg, #3378ff, #ff6b6b, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        nav a.active { position: relative; }
+        nav a.active::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60%; height: 3px; background: linear-gradient(90deg, #3378ff, #ff6b6b); border-radius: 2px; }
+        .restaurant-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .restaurant-card:hover { transform: translateY(-6px); }
+        .price-pip { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .price-pip.filled { background: #fbbf24; }
+        .price-pip.empty { background: rgba(251, 191, 36, 0.15); }
+    </style>
 </head>
-<body>
-    <header>
-        <h1>Amsterdam Resa</h1>
-        <p class="dates">22-24 Augusti 2025</p>
-    </header>
+<body class="bg-slate-950 text-white min-h-screen">
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Hem</a></li>
-            <li><a href="activities.html">Aktiviteter</a></li>
-            <li><a href="restaurants.html" class="active">Restauranger</a></li>
-        </ul>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-dark">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="font-display font-bold text-xl gradient-text">Amsterdam 2026</a>
+                <div class="flex gap-1">
+                    <a href="index.html" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/10 transition-all">Hem</a>
+                    <a href="activities.html" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/10 transition-all">Aktiviteter</a>
+                    <a href="restaurants.html" class="active px-4 py-2 rounded-lg text-sm font-medium text-white hover:bg-white/10 transition-all">Restauranger</a>
+                </div>
+            </div>
+        </div>
     </nav>
 
-    <main>
-        <section class="page-header">
-            <h2>Restauranger</h2>
-            <p>Fantastiska veganska och vegetariska restauranger i Amsterdam</p>
-        </section>
+    <!-- Page Header -->
+    <section class="pt-32 pb-16 px-4 relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-20 w-72 h-72 bg-tulip-500/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-10 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
+        </div>
+        <div class="relative max-w-6xl mx-auto text-center">
+            <h1 data-aos="fade-up" class="font-display font-extrabold text-4xl sm:text-6xl mb-4">
+                <span class="gradient-text">Restauranger</span>
+            </h1>
+            <p data-aos="fade-up" data-aos-delay="100" class="text-slate-400 text-lg max-w-xl mx-auto">
+                8 veganska och vegetariska pärlor — klicka för att besöka hemsidan
+            </p>
+        </div>
+    </section>
 
-        <section class="restaurants-grid">
-            <div class="restaurant-card clickable-card" onclick="window.open('https://veganjunkfoodbar.com/', '_blank')">
-                <div class="restaurant-image">
-                    <img src="images/vegan-junk-food-bar.jpg" alt="Vegan Junk Food Bar" onerror="this.style.display='none'">
+    <!-- Restaurant Cards -->
+    <section class="px-4 pb-24">
+        <div class="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Bonboon -->
+            <a href="https://www.bonboon.nl/en" target="_blank" rel="noopener"
+               data-aos="fade-up" data-aos-delay="0"
+               class="restaurant-card block bg-slate-900/80 border border-slate-800 rounded-3xl overflow-hidden hover:border-amber-500/40 cursor-pointer group">
+                <div class="h-48 bg-gradient-to-br from-amber-500/20 via-canal-500/10 to-tulip-500/20 flex items-center justify-center relative overflow-hidden">
+                    <span class="text-6xl group-hover:scale-110 transition-transform duration-500">🍽️</span>
+                    <div class="absolute bottom-3 right-3 flex gap-1">
+                        <span class="price-pip filled"></span><span class="price-pip filled"></span><span class="price-pip filled"></span><span class="price-pip filled"></span>
+                    </div>
                 </div>
-                <div class="restaurant-info">
-                    <h3>Vegan Junk Food Bar</h3>
-                    <p class="location">Marie Heinekenplein</p>
-                    <p class="cuisine">Växtbaserad snabbmat</p>
-                    <p class="price">💰💰 Mellanklass</p>
-                    <p class="description">Färgstark restaurang med saftiga vegoburgare, "bitterballen" och shawarma som tillfredsställer även köttätare. Perfekt efter Albert Cuyp-marknaden.</p>
-                    <div class="specialties">
-                        <span>Vegoburgare</span>
-                        <span>Shawarma</span>
-                        <span>Bitterballen</span>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-xl mb-2 group-hover:text-amber-400 transition-colors">Bonboon</h3>
+                    <p class="text-sm text-amber-400 mb-1">Rozenstraat 12, Jordaan</p>
+                    <p class="text-xs text-slate-500 mb-4">Vegansk fine dining</p>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">Exklusiv avsmakningsmeny som byter var 8:e vecka. Säsongsbaserade rätter med oväntade smakkombinationer. Växtbaserad mat som konst.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Avsmakningsmeny</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Vinpaket</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Thailändskt inspirerat</span>
+                    </div>
+                    <p class="text-xs text-slate-500">Ons-Sön 18:00-23:00 · Bokning krävs</p>
+                </div>
+            </a>
+
+            <!-- Morris & Bella (NEW) -->
+            <a href="https://morrisenbella.nl/english" target="_blank" rel="noopener"
+               data-aos="fade-up" data-aos-delay="100"
+               class="restaurant-card block bg-slate-900/80 border border-emerald-500/30 rounded-3xl overflow-hidden hover:border-emerald-500/50 cursor-pointer group relative">
+                <div class="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Nytt!</div>
+                <div class="h-48 bg-gradient-to-br from-emerald-500/20 via-amber-500/10 to-canal-500/20 flex items-center justify-center relative overflow-hidden">
+                    <span class="text-6xl group-hover:scale-110 transition-transform duration-500">🌿</span>
+                    <div class="absolute bottom-3 right-3 flex gap-1">
+                        <span class="price-pip filled"></span><span class="price-pip filled"></span><span class="price-pip filled"></span><span class="price-pip filled"></span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-xl mb-2 group-hover:text-emerald-400 transition-colors">Morris & Bella</h3>
+                    <p class="text-sm text-amber-400 mb-1">Nova Zemblastraat 586, Spaarndammerbuurt</p>
+                    <p class="text-xs text-slate-500 mb-4">Vegansk slow fine dining</p>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">Intim "slow dining" med säsongens grönsaker i fokus. Kocken Morris lagar root-to-leaf med noll svinn, ekologiskt från egen trädgård.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Avsmakningmeny</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Zero waste</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Egen trädgård</span>
+                    </div>
+                    <p class="text-xs text-slate-500">Ons-Fre 17:30-22, Lör-Sön 13-15 & 17:30-22</p>
+                </div>
+            </a>
+
+            <!-- Men Impossible (NEW) -->
+            <a href="https://www.menimpossible.com/en" target="_blank" rel="noopener"
+               data-aos="fade-up" data-aos-delay="200"
+               class="restaurant-card block bg-slate-900/80 border border-emerald-500/30 rounded-3xl overflow-hidden hover:border-emerald-500/50 cursor-pointer group relative">
+                <div class="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Nytt!</div>
+                <div class="h-48 bg-gradient-to-br from-tulip-500/20 via-canal-500/10 to-amber-500/20 flex items-center justify-center relative overflow-hidden">
+                    <span class="text-6xl group-hover:scale-110 transition-transform duration-500">🍜</span>
+                    <div class="absolute bottom-3 right-3 flex gap-1">
+                        <span class="price-pip filled"></span><span class="price-pip filled"></span><span class="price-pip empty"></span><span class="price-pip empty"></span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-xl mb-2 group-hover:text-emerald-400 transition-colors">Men Impossible</h3>
+                    <p class="text-sm text-amber-400 mb-1">Hazenstraat 19H, Jordaan</p>
+                    <p class="text-xs text-slate-500 mb-4">Vegansk ramen</p>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">Amsterdams första helveganska ramen. Rik och smakfull buljong i gemensam matsal. Bokning krävs — intimt och unikt koncept.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Vegansk ramen</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Gemensam matsal</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Bokning krävs</span>
+                    </div>
+                    <p class="text-xs text-slate-500">Mån & Ons-Sön 17:00-20:15 · Stängt tisdagar</p>
+                </div>
+            </a>
+
+            <!-- Madre -->
+            <a href="https://www.madre.amsterdam" target="_blank" rel="noopener"
+               data-aos="fade-up" data-aos-delay="0"
+               class="restaurant-card block bg-slate-900/80 border border-slate-800 rounded-3xl overflow-hidden hover:border-tulip-500/40 cursor-pointer group">
+                <div class="h-48 bg-gradient-to-br from-tulip-500/20 via-emerald-500/10 to-canal-500/20 flex items-center justify-center relative overflow-hidden">
+                    <span class="text-6xl group-hover:scale-110 transition-transform duration-500">🌮</span>
+                    <div class="absolute bottom-3 right-3 flex gap-1">
+                        <span class="price-pip filled"></span><span class="price-pip filled"></span><span class="price-pip empty"></span><span class="price-pip empty"></span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-xl mb-2 group-hover:text-tulip-400 transition-colors">Madre</h3>
+                    <p class="text-sm text-amber-400 mb-1">Westerstraat 186, Jordaan</p>
+                    <p class="text-xs text-slate-500 mb-4">Vegansk mexikansk</p>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">Före detta bio, nu en livlig växtbaserad mexikansk restaurang. Ordet "vegan" syns inte på menyn — allt är bara gott. Perfekt för en kväll ihop!</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Jackfruit-tacos</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Tryffel-quesadillas</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Cocktails</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-tulip-400">
+                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                        Stängt söndagar · Mån-Fre 17-01, Lör 13-01
+                    </div>
+                </div>
+            </a>
+
+            <!-- H/eart.h -->
+            <a href="https://www.hearthamsterdam.com/" target="_blank" rel="noopener"
+               data-aos="fade-up" data-aos-delay="100"
+               class="restaurant-card block bg-slate-900/80 border border-slate-800 rounded-3xl overflow-hidden hover:border-canal-500/40 cursor-pointer group">
+                <div class="h-48 bg-gradient-to-br from-canal-500/20 via-tulip-500/10 to-amber-500/20 flex items-center justify-center relative overflow-hidden">
+                    <span class="text-6xl group-hover:scale-110 transition-transform duration-500">🥗</span>
+                    <div class="absolute bottom-3 right-3 flex gap-1">
+                        <span class="price-pip filled"></span><span class="price-pip filled"></span><span class="price-pip filled"></span><span class="price-pip empty"></span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-xl mb-2 group-hover:text-canal-400 transition-colors">H/eart.h</h3>
+                    <p class="text-sm text-amber-400 mb-1">Camperstraat 26H, Amsterdam Oost</p>
+                    <p class="text-xs text-slate-500 mb-4">Vegansk fusion & audiobar</p>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">Kreativ fusion med lekfull meny — rödbets-rawvioli med cashewricotta, broccolignocchi. Lyssningssessioner och livejazz.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Rawvioli</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Gnocchi</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Söndagsbrunch</span>
+                    </div>
+                    <p class="text-xs text-slate-500">Mån-Lör 17-00, Sön 12-00 · Söndagslunch!</p>
+                </div>
+            </a>
+
+            <!-- Meatless District -->
+            <a href="https://meatlessdistrict.nl/en/" target="_blank" rel="noopener"
+               data-aos="fade-up" data-aos-delay="200"
+               class="restaurant-card block bg-slate-900/80 border border-slate-800 rounded-3xl overflow-hidden hover:border-emerald-500/40 cursor-pointer group">
+                <div class="h-48 bg-gradient-to-br from-emerald-500/20 via-canal-500/10 to-amber-500/20 flex items-center justify-center relative overflow-hidden">
+                    <span class="text-6xl group-hover:scale-110 transition-transform duration-500">🍳</span>
+                    <div class="absolute bottom-3 right-3 flex gap-1">
+                        <span class="price-pip filled"></span><span class="price-pip filled"></span><span class="price-pip empty"></span><span class="price-pip empty"></span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-xl mb-2 group-hover:text-emerald-400 transition-colors">Meatless District</h3>
+                    <p class="text-sm text-amber-400 mb-1">Bilderdijkstraat 65-67, Oud-West</p>
+                    <p class="text-xs text-slate-500 mb-4">Vegansk bistro sedan 2016</p>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">Prisbelönt vegansk bistro med kreativ plantbaserad comfort food. Grillad aubergineburgare med pommes och vegansk majo — en klassiker.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Aubergineburgare</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">~15-20€</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Helglunch</span>
+                    </div>
+                    <p class="text-xs text-slate-500">Fre-Sön lunch 12-16, alla dagar middag 17:30-22 (stängt tis)</p>
+                </div>
+            </a>
+
+            <!-- Vegan Junk Food Bar -->
+            <a href="https://www.veganjunkfoodbar.com/" target="_blank" rel="noopener"
+               data-aos="fade-up" data-aos-delay="0"
+               class="restaurant-card block bg-slate-900/80 border border-slate-800 rounded-3xl overflow-hidden hover:border-tulip-500/40 cursor-pointer group">
+                <div class="h-48 bg-gradient-to-br from-tulip-500/20 via-amber-500/10 to-canal-500/20 flex items-center justify-center relative overflow-hidden">
+                    <span class="text-6xl group-hover:scale-110 transition-transform duration-500">🍔</span>
+                    <div class="absolute bottom-3 right-3 flex gap-1">
+                        <span class="price-pip filled"></span><span class="price-pip filled"></span><span class="price-pip empty"></span><span class="price-pip empty"></span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-xl mb-2 group-hover:text-tulip-400 transition-colors">Vegan Junk Food Bar</h3>
+                    <p class="text-sm text-amber-400 mb-1">Marie Heinekenplein, De Pijp</p>
+                    <p class="text-xs text-slate-500 mb-4">Växtbaserad snabbmat</p>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">Färgstark och energisk med vegoburgare, bitterballen, loaded fries och shawarma. Perfekt casual lunch nära Albert Cuyp-marknaden.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Vegoburgare</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Bitterballen</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Shawarma</span>
+                    </div>
+                    <p class="text-xs text-slate-500">Varje dag 11/12-00</p>
+                </div>
+            </a>
+
+            <!-- Koffie ende Koeck -->
+            <a href="https://www.koffieendekoeck.nl/" target="_blank" rel="noopener"
+               data-aos="fade-up" data-aos-delay="100"
+               class="restaurant-card block bg-slate-900/80 border border-slate-800 rounded-3xl overflow-hidden hover:border-amber-500/40 cursor-pointer group">
+                <div class="h-48 bg-gradient-to-br from-amber-500/20 via-tulip-500/10 to-emerald-500/20 flex items-center justify-center relative overflow-hidden">
+                    <span class="text-6xl group-hover:scale-110 transition-transform duration-500">☕</span>
+                    <div class="absolute bottom-3 right-3 flex gap-1">
+                        <span class="price-pip filled"></span><span class="price-pip empty"></span><span class="price-pip empty"></span><span class="price-pip empty"></span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display font-bold text-xl mb-2 group-hover:text-amber-400 transition-colors">Koffie ende Koeck</h3>
+                    <p class="text-sm text-amber-400 mb-1">Haarlemmerweg 175, Westerpark</p>
+                    <p class="text-xs text-slate-500 mb-4">Veganskt kafé & bageri</p>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">Mysigt helveganskt dagskaféer med legendarisk morotskaka, quiche och specialkaffe. Precis vid Westerpark — perfekt fika-stopp.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Morotskaka</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Quiche</span>
+                        <span class="px-3 py-1 rounded-full text-xs bg-white/5 text-slate-300">Budget-vänligt</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-tulip-400">
+                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                        Stängt sön-mån · Tis-Fre 09:30-17:30, Lör 10-17:30
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="px-4 pb-24">
+        <div class="max-w-6xl mx-auto">
+            <h2 data-aos="fade-up" class="font-display font-bold text-2xl sm:text-3xl text-center mb-12">Tips för restaurangbesök</h2>
+            <div class="grid sm:grid-cols-3 gap-6">
+                <div data-aos="fade-up" data-aos-delay="0" class="glass rounded-2xl p-6 text-center">
+                    <span class="text-3xl block mb-4">📱</span>
+                    <h3 class="font-display font-bold mb-2">Boka i förväg</h3>
+                    <p class="text-sm text-slate-400">Bonboon, Morris & Bella och Men Impossible kräver bokning. Boka så snart som möjligt!</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100" class="glass rounded-2xl p-6 text-center">
+                    <span class="text-3xl block mb-4">📅</span>
+                    <h3 class="font-display font-bold mb-2">Kolla stängningsdagar</h3>
+                    <p class="text-sm text-slate-400">Madre och Koffie ende Koeck stängt söndag. Men Impossible stängt tisdag. Planera runt detta!</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200" class="glass rounded-2xl p-6 text-center">
+                    <span class="text-3xl block mb-4">🍸</span>
+                    <h3 class="font-display font-bold mb-2">Bästa kvällen ihop</h3>
+                    <p class="text-sm text-slate-400">Madre har cocktailbar, liveig stämning och öppet till 01:00. Perfekt far-dotter-kväll torsdag eller fredag.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day Planner Quick Reference -->
+    <section class="px-4 pb-24">
+        <div class="max-w-4xl mx-auto">
+            <div data-aos="fade-up" class="bg-slate-900/80 border border-slate-800 rounded-3xl p-8">
+                <h3 class="font-display font-bold text-xl text-center mb-6">Vilka restauranger är öppna vilken dag?</h3>
+                <div class="grid grid-cols-4 gap-3 text-center text-sm">
+                    <div class="font-semibold text-slate-300 pb-2 border-b border-slate-800">Torsdag 19</div>
+                    <div class="font-semibold text-slate-300 pb-2 border-b border-slate-800">Fredag 20</div>
+                    <div class="font-semibold text-slate-300 pb-2 border-b border-slate-800">Lördag 21</div>
+                    <div class="font-semibold text-slate-300 pb-2 border-b border-slate-800">Söndag 22</div>
+
+                    <div class="text-slate-400 pt-2 space-y-1.5">
+                        <p>Madre</p>
+                        <p>H/eart.h</p>
+                        <p>Bonboon</p>
+                        <p>Meatless D.</p>
+                        <p>Men Imp.</p>
+                        <p>VJFB</p>
+                    </div>
+                    <div class="text-slate-400 pt-2 space-y-1.5">
+                        <p>Madre</p>
+                        <p>H/eart.h</p>
+                        <p>Bonboon</p>
+                        <p>Meatless D.</p>
+                        <p>Morris&B.</p>
+                        <p>Men Imp.</p>
+                        <p>Koffie e.K.</p>
+                        <p>VJFB</p>
+                    </div>
+                    <div class="text-slate-400 pt-2 space-y-1.5">
+                        <p>Madre</p>
+                        <p>H/eart.h</p>
+                        <p>Bonboon</p>
+                        <p>Meatless D.</p>
+                        <p>Morris&B.</p>
+                        <p>Men Imp.</p>
+                        <p>Koffie e.K.</p>
+                        <p>VJFB</p>
+                    </div>
+                    <div class="pt-2 space-y-1.5">
+                        <p class="text-slate-400">H/eart.h</p>
+                        <p class="text-slate-400">Bonboon</p>
+                        <p class="text-slate-400">Meatless D.</p>
+                        <p class="text-slate-400">Morris&B.</p>
+                        <p class="text-slate-400">Men Imp.</p>
+                        <p class="text-slate-400">VJFB</p>
+                        <p class="text-tulip-400/60 line-through">Madre</p>
+                        <p class="text-tulip-400/60 line-through">Koffie e.K.</p>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="restaurant-card clickable-card" onclick="window.open('https://meatlessdistrict.nl/', '_blank')">
-                <div class="restaurant-image">
-                    <img src="images/meatless-district.jpg" alt="Meatless District" onerror="this.style.display='none'">
-                </div>
-                <div class="restaurant-info">
-                    <h3>Meatless District</h3>
-                    <p class="location">Oud-West, nära Leidseplein</p>
-                    <p class="cuisine">Helvegansk bistro</p>
-                    <p class="price">💰💰 ~15€ huvudrätter</p>
-                    <p class="description">Prisbelönt vegansk bistro med kreativ plantbaserad mat i avslappnad miljö. Omtyckta grillad aubergineburgare med pommes och vegansk majo.</p>
-                    <div class="specialties">
-                        <span>Aubergineburgare</span>
-                        <span>Kreativ bistromat</span>
-                        <span>Avslappnad atmosfär</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="restaurant-card clickable-card" onclick="window.open('https://maps.google.com/maps?q=Koffie+ende+Koeck+Haarlemmerweg+175+Amsterdam', '_blank')">
-                <div class="restaurant-image">
-                    <img src="images/koffie-ende-koeck.jpg" alt="Koffie ende Koeck" onerror="this.style.display='none'">
-                </div>
-                <div class="restaurant-info">
-                    <h3>Koffie ende Koeck</h3>
-                    <p class="location">Haarlemmerweg 175, nära Westerpark</p>
-                    <p class="cuisine">Veganskt kafé</p>
-                    <p class="price">💰 Budget-vänligt</p>
-                    <p class="description">Mysigt veganskt kafé känt för goda bakverk, smörgåsar och quiche. Öppet 10-17 även helger. Perfekt för fika med morotskaka eller matig smörgås.</p>
-                    <div class="specialties">
-                        <span>Veganska bakverk</span>
-                        <span>Quiche</span>
-                        <span>Morotskaka</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="restaurant-card clickable-card" onclick="window.open('https://madre.amsterdam/', '_blank')">
-                <div class="restaurant-image">
-                    <img src="images/madre.jpg" alt="Madre" onerror="this.style.display='none'">
-                </div>
-                <div class="restaurant-info">
-                    <h3>Madre</h3>
-                    <p class="location">Westerstraat 186, Jordaan</p>
-                    <p class="cuisine">Vegetarisk/vegansk mexikansk</p>
-                    <p class="price">💰💰 Mellanklass</p>
-                    <p class="description">Livlig mexikansk restaurang med utsökt växtbaserad comfort food. Jackfruit-tacos, svamptacos och quesadillas med shiitakes och tryffel. Goda cocktails!</p>
-                    <div class="specialties">
-                        <span>Jackfruit-tacos</span>
-                        <span>Truffle quesadillas</span>
-                        <span>Cocktails</span>
-                    </div>
-                    <p class="hours"><strong>OBS:</strong> Stängt söndagar</p>
-                </div>
-            </div>
-
-            <div class="restaurant-card clickable-card" onclick="window.open('https://maps.google.com/maps?q=H+eart+h+Camperstraat+24+Amsterdam', '_blank')">
-                <div class="restaurant-image">
-                    <img src="images/heart.jpg" alt="H/eart.h" onerror="this.style.display='none'">
-                </div>
-                <div class="restaurant-info">
-                    <h3>H/eart.h</h3>
-                    <p class="location">Camperstraat 24, Oosterpark/De Pijp</p>
-                    <p class="cuisine">Vegansk fusion</p>
-                    <p class="price">💰💰💰 Högre mellanklass</p>
-                    <p class="description">Omtalad vegansk restaurang och kulturhäng. Färgglada bowls och kreativ fusion-mat som "rawvioli" på rödbeta med cashewricotta eller broccolignocchi.</p>
-                    <div class="specialties">
-                        <span>Rawvioli</span>
-                        <span>Broccolignocchi</span>
-                        <span>Livemusik</span>
-                    </div>
-                    <p class="extra">Ibland jazzbrunch på söndagar</p>
-                </div>
-            </div>
-
-            <div class="restaurant-card clickable-card" onclick="window.open('https://bonboon.nl/', '_blank')">
-                <div class="restaurant-image">
-                    <img src="images/bonboon.jpg" alt="Bonboon" onerror="this.style.display='none'">
-                </div>
-                <div class="restaurant-info">
-                    <h3>Bonboon</h3>
-                    <p class="location">Rozenstraat 12, Hotel Mercier, Jordaan</p>
-                    <p class="cuisine">Vegansk fine dining</p>
-                    <p class="price">💰💰💰💰 Exklusiv</p>
-                    <p class="description">Exklusiv helvegansk fine dining med avsmakningsmeny. Växtbaserad mat som konst - säsongsbaserad meny med thailändskt inspirerade rätter och överraskande smaker.</p>
-                    <div class="specialties">
-                        <span>Avsmakningsmeny</span>
-                        <span>Säsongsbaserat</span>
-                        <span>Fine dining</span>
-                    </div>
-                    <p class="hours"><strong>Öppettider:</strong> Onsdag-söndag från 18:00</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="restaurant-tips">
-            <h3>Tips för restaurangbesök</h3>
-            <div class="tips-grid">
-                <div class="tip">
-                    <h4>Bokning</h4>
-                    <p>Boka bord i förväg, särskilt på Bonboon och H/eart.h</p>
-                </div>
-                <div class="tip">
-                    <h4>Öppettider</h4>
-                    <p>Kontrollera öppettider - flera är stängda måndag/tisdag</p>
-                </div>
-                <div class="tip">
-                    <h4>Språk</h4>
-                    <p>De flesta talar engelska utmärkt, menyer finns ofta på engelska</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>Ha en fantastisk resa i Amsterdam! 🇳🇱</p>
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-12 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="font-display font-bold text-2xl gradient-text mb-2">Amsterdam 2026</p>
+            <p class="text-slate-500">Ha en fantastisk resa! 🇳🇱</p>
+        </div>
     </footer>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, duration: 800, easing: 'ease-out-cubic' });
+    </script>
 </body>
 </html>
